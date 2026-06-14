@@ -7,7 +7,7 @@ import ContactSection from "../components/Contact";
 import { Navbar } from "../components/Navbar";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
-import { Zap, GitBranch } from "lucide-react";
+import { Zap, GitBranch, Server } from "lucide-react";
 import { ProjectsSection } from "@/components/ProjectSection";
 import { AboutSection } from "@/components/About";
 import '../styles/animations.css';
@@ -76,35 +76,50 @@ const mySkills: Skill[] = [
     color: "from-pink-500 to-rose-600",
     logo: <GitBranch className="w-full h-full text-pink-400" />
   },
+  {
+    name: "Redis",
+    level: 90,
+    color: "from-red-500 to-red-700",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg"
+  },
+  {
+    name: "System Design",
+    level: 85,
+    color: "from-purple-500 to-indigo-600",
+    logo: <Server className="w-full h-full text-purple-400" />
+  },
 ];
 
 
 const projects = [
+  {
+      title: "Job Portal - EmployVerse",
+      description: "An AI based dynamic job portal where recruiters can post job and internship opportunities, and applicants can explore and apply with ease.",
+      image: "/employverse.png",
+      tags: ["Embedded JS", "Rest APIs", "Express", "Node JS", "Tailwind CSS", "MongoDB"],
+      color: "from-green-500 to-teal-500",
+      liveUrl: "https://employverse.swanshi.me/", // Add your deployed URL here
+      githubUrl: "https://github.com/SSwanshi/EmployVerse.git" // Optional: GitHub repository
+    },
     {
       title: "LMS Platform - CloudClass",
       description: "A fully functional app designed for both students and instructors to delivers a smooth and scalable online learning experience.",
-      image: "🎓",
+      image: "/cloudclass.png",
       tags: ["React", "Next.js", "Prisma", "Stripe", "Typescript", "Railway", "Mux", "Clerk", "Tailwind"],
       color: "from-purple-500 to-pink-500",
-      liveUrl: "https://cloud-class-theta.vercel.app/", // Add your deployed URL here
+      liveUrl: "https://cloudclass.swanshi.me/", // Add your deployed URL here
       githubUrl: "https://github.com/SSwanshi/CloudClass.git" // Optional: GitHub repository
     },
     {
-      title: "Web Chat Application - Chatify",
+      title: "Instagenie",
       description: "An Online chatting application for seamless and secure communication between users with features of file and media sharing.",
-      image: "💬",
+      image: "/instagenie.png",
       tags: ["React", "Node.js", "MongoDB", "Socket.io", "Express", "Tailwind", "O Auth"],
       color: "from-blue-500 to-cyan-500",
-      liveUrl: "https://chatify-one-rho.vercel.app",
+      liveUrl: "https://instagenie.swanshi.me/",
       githubUrl: "https://github.com/SSwanshi/Chatify_server.git"
     },
-    {
-      title: "Job Portal - GoHire",
-      description: "A dynamic job portal where recruiters can post job and internship opportunities, and applicants can explore and apply with ease.",
-      image: "📱",
-      tags: ["Embedded JS", "Rest APIs", "Express", "Node JS", "Tailwind CSS", "MongoDB"],
-      color: "from-green-500 to-teal-500",
-    }
+    
   ];
 
 

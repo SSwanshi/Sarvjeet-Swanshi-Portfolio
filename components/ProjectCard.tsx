@@ -1,6 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { Github } from 'lucide-react';
 
 type Project = {
   title: string;
@@ -33,7 +35,20 @@ export const ProjectCard = ({ project, index }: Props) => {
     >
       <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       <div className="relative z-10">
-        <div className="text-6xl mb-4">{project.image}</div>
+
+        {/* Project Preview Image */}
+        <div className="relative w-full h-44 mb-5 rounded-xl overflow-hidden border border-white/10">
+          <Image
+            src={project.image}
+            alt={`${project.title} preview`}
+            fill
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+          {/* Subtle gradient overlay at bottom for readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        </div>
+
         <h3 className="text-2xl font-bold text-white mb-3">{project.title}</h3>
         <p className="text-gray-300 mb-4 line-clamp-3">{project.description}</p>
 
@@ -68,7 +83,7 @@ export const ProjectCard = ({ project, index }: Props) => {
               className="px-4 py-3 bg-white/10 text-white font-semibold rounded-lg hover:bg-white/20 transition-all duration-300 flex items-center justify-center border border-white/20"
               title="View Source Code"
             >
-              💻
+              <Github className="w-5 h-5" />
             </motion.button>
           )}
         </div>
