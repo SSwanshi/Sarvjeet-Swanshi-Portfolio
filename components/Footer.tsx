@@ -19,7 +19,7 @@ export const Footer = ({ name, title, year = new Date().getFullYear(), socialLin
             <p className="text-gray-400 mt-2">{title}</p>
           </div>
 
-          <div className="flex space-x-6">
+          <div className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6 mt-6 md:mt-0">
             {socialLinks.map(({ label, url }) => (
               <motion.a
                 key={label}

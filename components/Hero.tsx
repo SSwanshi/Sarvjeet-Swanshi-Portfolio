@@ -8,7 +8,6 @@ import Typewriter from './Typewriter';
 import AnimatedButton from './viewProject';
 import ResumeButton from './viewResume';
 import { FloatingAvatar } from './FloatingAvatar';
-import { ScrollIndicator } from './ScrollIndicator';
 import { TechLoader } from './TechLoader';
 import { FullStackCanvas } from './FullStackCanvas';
 
@@ -411,9 +410,6 @@ export const Hero = ({ onLoaderComplete }: HeroProps) => {
                             />
                         </div>
                     </div>
-
-                    {/* Enhanced Scroll Indicator */}
-                    <ScrollIndicator mouseXSpring={mouseXSpring} />
 
                 </motion.div>
             </section>

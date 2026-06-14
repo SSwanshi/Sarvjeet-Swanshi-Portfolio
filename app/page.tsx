@@ -138,7 +138,7 @@ export default function Home() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <main ref={ref} className="min-h-screen transition-colors duration-300 relative overflow-hidden bg-black cursor-none" style={{ position: 'relative' }}>
+    <main ref={ref} className="min-h-screen transition-colors duration-300 relative overflow-hidden bg-black" style={{ position: 'relative' }}>
       {/* Shooting Star Cursor Effect */}
       <ShootingStarCursor />
       {/* Navbar */}
