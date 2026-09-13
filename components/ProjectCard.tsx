@@ -26,12 +26,12 @@ export const ProjectCard = ({ project, index }: Props) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 35 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.2 }}
-      whileHover={{ y: -10, scale: 1.02 }}
-      className="group relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-all duration-300 overflow-hidden"
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.6, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -6, scale: 1.015 }}
+      className="group relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-colors duration-300 overflow-hidden"
     >
       <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       <div className="relative z-10">

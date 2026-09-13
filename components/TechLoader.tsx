@@ -86,7 +86,7 @@ export const TechLoader: React.FC<TechLoaderProps> = ({ onComplete }) => {
       </div>
 
       {/* Binary Rain Effect */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden" suppressHydrationWarning>
         {Array.from({ length: 20 }).map((_, i) => (
           <motion.div
             key={i}
@@ -95,10 +95,10 @@ export const TechLoader: React.FC<TechLoaderProps> = ({ onComplete }) => {
               left: `${i * 5}%`,
               top: '-100px'
             }}
-                  animate={{
-                    y: [0, (typeof window !== 'undefined' ? window.innerHeight : 1000) + 100],
-                    opacity: [0, 1, 0]
-                  }}
+            animate={{
+              y: [0, 1200],
+              opacity: [0, 1, 0]
+            }}
             transition={{
               duration: 3,
               repeat: Infinity,
@@ -108,7 +108,7 @@ export const TechLoader: React.FC<TechLoaderProps> = ({ onComplete }) => {
           >
             {Array.from({ length: 10 }).map((_, j) => (
               <div key={j}>
-                {Math.random() > 0.5 ? '1' : '0'}
+                {(i * 3 + j * 7) % 2 === 0 ? '1' : '0'}
               </div>
             ))}
           </motion.div>

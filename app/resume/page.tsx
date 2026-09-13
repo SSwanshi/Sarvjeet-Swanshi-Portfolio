@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { Download, Loader2, AlertCircle } from 'lucide-react';
 import { Navbar } from '@/components/Navbar';
-import ShootingStarCursor from '@/components/ShootingStarCursor';
 
 const Resume = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -33,8 +32,7 @@ const Resume = () => {
   };
 
   return (
-    <main className="min-h-screen transition-colors duration-300 relative overflow-hidden bg-black cursor-none">
-      <ShootingStarCursor />
+    <main className="min-h-screen transition-colors duration-300 relative overflow-hidden bg-black">
       <Navbar loaderComplete={true} />
 
       <div className="relative z-10 pt-24 pb-12 px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col">

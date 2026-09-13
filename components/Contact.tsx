@@ -46,53 +46,11 @@ const ContactSection = ({
         message: ""
     });
 
-    // Refs for GSAP animations
+    // Refs
     const contactRef = useRef<HTMLElement>(null);
     const headingRef = useRef<HTMLDivElement>(null);
     const buttonsRef = useRef<HTMLDivElement>(null);
     const formRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (!contactRef.current) return;
-
-        // Simple entrance animations without ScrollTrigger
-        const tl = gsap.timeline({ delay: 0.5 });
-
-        tl.from(headingRef.current, {
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            ease: "power3.out"
-        });
-
-        // Animate buttons separately to ensure they're visible
-        if (buttonsRef.current?.children) {
-            gsap.from(buttonsRef.current.children, {
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.2,
-                ease: "power3.out",
-                delay: 0.3
-            });
-        }
-
-        // Form animation when opened - simplified
-        if (isFormOpen && formRef.current) {
-            gsap.set(formRef.current, { 
-                scale: 0.8, 
-                opacity: 0 
-            });
-            gsap.to(formRef.current, {
-                scale: 1,
-                opacity: 1,
-                duration: 0.3,
-                ease: "power2.out"
-            });
-        }
-
-
-    }, [isFormOpen]);
 
 
     const showToast = (type: ToastType, message: string) => {
@@ -226,10 +184,10 @@ const ContactSection = ({
                 <div className="container mx-auto px-4 relative z-10">
                     <motion.div
                         ref={headingRef}
-                        initial={{ opacity: 0, y: 50 }}
+                        initial={{ opacity: 0, y: 35 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                         className="text-center max-w-3xl mx-auto"
                     >
                         <h2 className="text-5xl font-bold text-white mb-6">
@@ -247,8 +205,8 @@ const ContactSection = ({
                                         onClick={() => handleButtonClick(button)}
                                         className={
                                             button.variant === "primary"
-                                                ? "px-8 py-4 bg-white text-black font-semibold rounded-full shadow-lg hover:shadow-white/25 transition-all duration-300"
-                                                : "px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:border-gray-300 transition-all duration-300 backdrop-blur-sm"
+                                                ? "px-8 py-4 bg-white text-black font-semibold rounded-full shadow-lg hover:shadow-white/25 transition-colors duration-300"
+                                                : "px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:border-gray-300 transition-colors duration-300 backdrop-blur-sm"
                                         }
                                     >
                                         {button.label}
@@ -259,7 +217,7 @@ const ContactSection = ({
                                     whileHover={{ scale: 1.05, y: -2 }}
                                     whileTap={{ scale: 0.95 }}
                                     onClick={() => setIsFormOpen(true)}
-                                    className="px-8 py-4 bg-white text-black font-semibold rounded-full shadow-lg hover:shadow-white/25 transition-all duration-300"
+                                    className="px-8 py-4 bg-white text-black font-semibold rounded-full shadow-lg hover:shadow-white/25 transition-colors duration-300"
                                 >
                                     Get In Touch
                                 </motion.button>

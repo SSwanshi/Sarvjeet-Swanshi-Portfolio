@@ -31,38 +31,6 @@ export const SkillsSection = ({
   const headingRef = useRef<HTMLDivElement>(null);
   const skillsGridRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!skillsRef.current) return;
-
-    // Simple entrance animations without ScrollTrigger
-    const tl = gsap.timeline({ delay: 0.4 });
-
-    tl.from(headingRef.current, {
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out"
-    })
-    .from(skillsGridRef.current?.children || [], {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: "power3.out"
-    }, "-=0.5");
-
-    // Progress bars animation
-    gsap.from(".skill-progress", {
-      width: 0,
-      duration: 2,
-      ease: "power2.out",
-      stagger: 0.2,
-      delay: 1
-    });
-
-
-  }, []);
-
   const renderLogo = (logo: ReactNode | string | undefined, skillName: string) => {
     if (!logo) return null;
     
@@ -74,9 +42,10 @@ export const SkillsSection = ({
           alt={`${skillName} logo`}
           width={32}
           height={32}
-          className="object-contain"
+          className={`object-contain ${skillName.toLowerCase().includes('github') ? 'invert' : ''}`}
           priority={false}
           loading="lazy"
+          unoptimized
         />
       );
     }
@@ -95,10 +64,10 @@ export const SkillsSection = ({
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={headingRef}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >
           <h2 className="text-5xl font-bold text-white mb-4">
@@ -111,20 +80,21 @@ export const SkillsSection = ({
           {skills.map((skill, index) => (
             <motion.div
               key={skill.name}
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:border-white/40 transition-all duration-300"
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.5, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ scale: 1.02 }}
+              className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:border-white/40 transition-colors duration-300"
             >
               <div className="flex justify-between items-center mb-3">
                 <div className="flex items-center gap-3">
                   {skill.logo && (
                     <motion.div
-                      initial={{ scale: 0, rotate: -180 }}
-                      whileInView={{ scale: 1, rotate: 0 }}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                      transition={{ duration: 0.4, delay: index * 0.05 + 0.1, ease: [0.22, 1, 0.36, 1] }}
                     >
                       {renderLogo(skill.logo, skill.name)}
                     </motion.div>
@@ -139,7 +109,7 @@ export const SkillsSection = ({
                   initial={{ width: 0 }}
                   whileInView={{ width: `${skill.level}%` }}
                   viewport={{ once: true }}
-                  transition={{ duration: 1.5, delay: index * 0.1 + 0.3 }}
+                  transition={{ duration: 1, delay: index * 0.05 + 0.15, ease: [0.22, 1, 0.36, 1] }}
                 />
               </div>
             </motion.div>

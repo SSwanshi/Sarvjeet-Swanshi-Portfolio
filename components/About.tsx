@@ -97,40 +97,6 @@ export const AboutSection = ({
         };
     }, [leetcodeUsername]);
 
-    useEffect(() => {
-        if (!aboutRef.current) return;
-
-        const tl = gsap.timeline({ delay: 0.5 });
-
-        tl.from(headingRef.current, {
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            ease: "power3.out"
-        })
-        .from(contentRef.current, {
-            y: 30,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power3.out"
-        }, "-=0.5")
-        .from(rightRef.current?.children || [], {
-            y: 30,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: "power3.out"
-        }, "-=0.6")
-        .from(statsRef.current?.children || [], {
-            y: 20,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: "power3.out"
-        }, "-=0.3");
-
-    }, []);
-
     return (
         <section
             ref={aboutRef}
@@ -141,10 +107,10 @@ export const AboutSection = ({
                 {/* Heading */}
                 <motion.div
                     ref={headingRef}
-                    initial={{ opacity: 0, y: 50 }}
+                    initial={{ opacity: 0, y: 35 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                     className="text-center mb-16"
                 >
                     <h2 className="text-5xl font-bold text-white mb-4">
@@ -158,10 +124,10 @@ export const AboutSection = ({
                     {/* Left: About Me content */}
                     <motion.div
                         ref={contentRef}
-                        initial={{ opacity: 0, y: 50 }}
+                        initial={{ opacity: 0, y: 35 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                         className="flex-1 bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/20"
                     >
                         <div className="flex flex-col items-center">
@@ -217,9 +183,9 @@ export const AboutSection = ({
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                            className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                            className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-colors duration-300"
                         >
                             <div className="flex flex-col items-center text-center">
                                 <div className="relative w-16 h-16 mb-4 rounded-2xl overflow-hidden bg-white/5 border border-white/10 p-2">
@@ -232,7 +198,7 @@ export const AboutSection = ({
                                 </div>
                                 <h3 className="text-lg font-bold text-white mb-2">BTech in Computer Science Engineering</h3>
                                 <p className="text-gray-400 text-sm mb-1">2023 – 2027</p>
-                                <p className="text-gray-300 font-medium">CGPA: 7.94</p>
+                                <p className="text-gray-300 font-medium">CGPA: 8.12</p>
                             </div>
                         </motion.div>
 
@@ -241,9 +207,9 @@ export const AboutSection = ({
                             <motion.div
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.1 }}
-                                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+                                viewport={{ once: true, amount: 0.2 }}
+                                transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-colors duration-300"
                             >
                                 <div className="flex flex-col gap-5">
                                     {codingProfiles.map((profile) => (
@@ -276,8 +242,8 @@ export const AboutSection = ({
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <p className="text-white font-medium">350+ solved</p>
-                                                            <p className="text-gray-400">Rating: 1570+</p>
+                                                            <p className="text-white font-medium">650+ solved</p>
+                                                            <p className="text-gray-400">Rating: 1820+</p>
                                                         </>
                                                     )
                                                 ) : profile.statText ? (

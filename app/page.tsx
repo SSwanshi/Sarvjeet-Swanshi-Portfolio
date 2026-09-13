@@ -5,32 +5,31 @@ import { SkillsSection, Skill } from "../components/Skills";
 import {ExperienceSection} from "../components/Experience";
 import ContactSection from "../components/Contact";
 import { Navbar } from "../components/Navbar";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useState } from "react";
 import { Zap, GitBranch, Server } from "lucide-react";
 import { ProjectsSection } from "@/components/ProjectSection";
 import { AboutSection } from "@/components/About";
 import '../styles/animations.css';
 import { Footer } from "@/components/Footer";
-import ShootingStarCursor from "@/components/ShootingStarCursor";
 
 
 const mySkills: Skill[] = [
   {
     name: "React",
-    level: 90,
+    level: 80,
     color: "from-blue-400 to-cyan-500",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
   },
   {
     name: "Next.js",
-    level: 80,
+    level: 85,
     color: "from-gray-700 to-gray-900",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
   },
   {
     name: "MongoDB",
-    level: 95,
+    level: 90,
     color: "from-green-500 to-emerald-600",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
   },
@@ -54,13 +53,13 @@ const mySkills: Skill[] = [
   },
   {
     name: "NodeJS",
-    level: 90,
+    level: 85,
     color: "from-green-500 to-emerald-600",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
   },
   {
     name: "Express",
-    level: 95,
+    level: 90,
     color: "from-yellow-400 to-orange-500",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
   },
@@ -81,6 +80,30 @@ const mySkills: Skill[] = [
     level: 90,
     color: "from-red-500 to-red-700",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg"
+  },
+  {
+    name: "Docker",
+    level: 85,
+    color: "from-sky-400 to-blue-600",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+  },
+  {
+    name: "GoLang",
+    level: 80,
+    color: "from-cyan-400 to-teal-500",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg"
+  },
+  {
+    name: "GitHub",
+    level: 90,
+    color: "from-gray-600 to-gray-800",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+  },
+  {
+    name: "AWS",
+    level: 70,
+    color: "from-amber-500 to-orange-600",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg"
   },
   {
     name: "System Design",
@@ -135,12 +158,11 @@ export default function Home() {
     offset: ["start start", "end start"]
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const smoothScroll = useSpring(scrollYProgress, { damping: 25, stiffness: 100 });
+  const backgroundY = useTransform(smoothScroll, [0, 1], ["0%", "30%"]);
 
   return (
     <main ref={ref} className="min-h-screen transition-colors duration-300 relative overflow-hidden bg-black" style={{ position: 'relative' }}>
-      {/* Shooting Star Cursor Effect */}
-      <ShootingStarCursor />
       {/* Navbar */}
       <Navbar loaderComplete={loaderComplete} />
 
@@ -178,7 +200,7 @@ export default function Home() {
   ]}
   description={[
     <div key="1" className="text-xl text-gray-300 mb-6 leading-relaxed relative">
-      I&apos;m a 3rd year undergraduate student at IIIT Sricity, Chittoor, deeply passionate about
+      I&apos;m a final year undergraduate student at IIIT Sricity, Chittoor, deeply passionate about
       building full-stack web applications that solve real-world problems. I specialize in modern
       technologies like React, Next.js, and Node.js, and I enjoy crafting clean, scalable digital solutions.
       <span
@@ -197,7 +219,7 @@ export default function Home() {
     </div>
   ]}
   stats={[
-    { label: "Projects Completed", value: "10+", color: "white" },
+    { label: "Projects Completed", value: "15+", color: "white" },
     { label: "Years Experience", value: "2+", color: "white" }
   ]}
 />

@@ -34,10 +34,10 @@ export const Hero = ({ onLoaderComplete }: HeroProps) => {
     const buttonsRef = useRef<HTMLDivElement>(null);
     const avatarRef = useRef<HTMLDivElement>(null);
 
-    // Mouse tracking
+    // Mouse tracking with silky smooth spring
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
-    const springConfig = { damping: 25, stiffness: 700 };
+    const springConfig = { damping: 30, stiffness: 120 };
     const mouseXSpring = useSpring(mouseX, springConfig);
     const mouseYSpring = useSpring(mouseY, springConfig);
 
@@ -80,66 +80,13 @@ export const Hero = ({ onLoaderComplete }: HeroProps) => {
         window.scrollTo(0, 0);
     }, []);
 
-    // GSAP Animations
+    // GSAP background effects
     useEffect(() => {
         if (!mounted) return;
 
-        // Smooth loading animation
-        const tl = gsap.timeline({ 
-            delay: 0.2,
-            onStart: () => {
-                // Ensure smooth transition from loading state
-                gsap.set(heroRef.current, { opacity: 1 });
-            }
-        });
-
-        // Hero entrance animation with smoother easing
-        tl.from(titleRef.current, {
-            y: 60,
-            opacity: 0,
-            duration: 1.2,
-            ease: "power4.out"
-        })
-        .from(subtitleRef.current, {
-            y: 40,
-            opacity: 0,
-            duration: 1,
-            ease: "power3.out"
-        }, "-=0.8")
-        .from(buttonsRef.current, {
-            y: 30,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power3.out"
-        }, "-=0.6")
-        .from(avatarRef.current, {
-            x: 80,
-            opacity: 0,
-            scale: 0.8,
-            duration: 1.4,
-            ease: "back.out(1.2)"
-        }, "-=1");
-
-        // Floating elements animation - smoother
-        gsap.to(".floating-element", {
-            y: "random(-15, 15)",
-            x: "random(-8, 8)",
-            rotation: "random(-3, 3)",
-            duration: "random(3, 6)",
-            ease: "power1.inOut",
-            repeat: -1,
-            yoyo: true,
-            stagger: 0.3
-        });
-
-        // Code typing effect
-        gsap.to(".code-typing", {
-            borderColor: "transparent",
-            duration: 0.5,
-            repeat: -1,
-            yoyo: true,
-            ease: "power2.inOut"
-        });
+        if (heroRef.current) {
+            gsap.to(heroRef.current, { opacity: 1, duration: 0.6, ease: "power2.out" });
+        }
 
         // Matrix sweep effect
         gsap.to(".matrix-effect", {
@@ -148,7 +95,6 @@ export const Hero = ({ onLoaderComplete }: HeroProps) => {
             ease: "none",
             repeat: -1
         });
-
     }, [mounted]);
 
     const containerVariants = {
@@ -156,24 +102,20 @@ export const Hero = ({ onLoaderComplete }: HeroProps) => {
         visible: {
             opacity: 1,
             transition: {
-                delayChildren: 0.2,
+                delayChildren: 0.1,
                 staggerChildren: 0.15,
-                duration: 1.2,
-                ease: "easeOut" as const
             }
         }
     };
 
     const itemVariants = {
-        hidden: { y: 40, opacity: 0 },
+        hidden: { opacity: 0, y: 30 },
         visible: {
-            y: 0,
             opacity: 1,
+            y: 0,
             transition: {
-                type: "spring" as const,
-                damping: 20,
-                stiffness: 100,
-                duration: 0.8
+                duration: 0.8,
+                ease: [0.16, 1, 0.3, 1] as const
             }
         }
     };
@@ -272,7 +214,7 @@ export const Hero = ({ onLoaderComplete }: HeroProps) => {
                             />
 
                             <motion.div
-                                className="relative p-6 lg:p-8 rounded-2xl backdrop-blur-lg bg-white/5 border border-white/20 shadow-2xl floating-element max-w-lg mx-auto lg:mx-0"
+                                className="relative p-6 lg:p-8 rounded-2xl backdrop-blur-lg bg-white/5 border border-white/20 shadow-2xl max-w-lg mx-auto lg:mx-0"
                                 variants={itemVariants}
                                 whileHover={{ scale: 1.02 }}
                                 transition={{ type: "spring", stiffness: 300 }}

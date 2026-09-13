@@ -23,6 +23,19 @@ export type Experience = {
 
 const experiences: Experience[] = [
   {
+    role: "Backend Engineer Intern",
+    company: "GeoRankers",
+    location: "Remote",
+    period: "Jul 2026 – Present",
+    logo: "/georankers.png",
+    points: [
+      "Built the GeoRankers MCP server end-to-end in Golang, enabling ChatGPT and Claude to securely interact with GeoRankers capabilities through standardized MCP tools, with authentication (PAT) and API integration.",
+      "Integrated Perplexity AI into the company’s AI search-visibility platform in Golang, expanding multi-LLM analysis from 2 to 3 AI models and increasing AI search-result coverage by ∼45% for a standard 5-keyword analysis.",
+      "Integrated external keyword volume APIs and engineered a categorized persistence layer for keyword metrics, reducing repeated API calls by ∼80% while improving lookup performance.",
+      "Developed backend modules for LLM-based source extraction, ranking, and comparative AI search analysis, and implemented secure payment gateway integration with robust payment security and validation mechanisms."
+    ]
+  },
+  {
     role: "MERN Stack Developer Intern",
     company: "Avijo",
     location: "Remote",
@@ -53,35 +66,15 @@ export const ExperienceSection = () => {
   const headingRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    const tl = gsap.timeline({ delay: 0.4 });
-
-    tl.from(headingRef.current, {
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out"
-    })
-    .from(cardsRef.current?.children || [], {
-      y: 40,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: "power3.out"
-    }, "-=0.5");
-  }, []);
-
   return (
     <section ref={sectionRef} id="experience" className="py-20 bg-black relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={headingRef}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >
           <h2 className="text-5xl font-bold text-white mb-4">
@@ -96,12 +89,12 @@ export const ExperienceSection = () => {
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 35 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              whileHover={{ scale: 1.02 }}
-              className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-white/40 transition-all duration-300 relative overflow-hidden group"
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.6, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ scale: 1.015 }}
+              className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-white/40 transition-colors duration-300 relative overflow-hidden group"
             >
               {/* Shine overlay on hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out pointer-events-none" />
@@ -110,10 +103,10 @@ export const ExperienceSection = () => {
                 {/* Logo & Company Info */}
                 <div className="md:w-1/4 flex flex-col items-center text-center border-b md:border-b-0 md:border-r border-white/10 pb-6 md:pb-0 md:pr-8">
                   <motion.div
-                    initial={{ scale: 0, rotate: -180 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.15 + 0.2 }}
+                    transition={{ duration: 0.5, delay: index * 0.12 + 0.1, ease: [0.22, 1, 0.36, 1] }}
                     className="relative w-20 h-20 mb-4 rounded-2xl overflow-hidden bg-white/5 border border-white/10 p-2"
                   >
                     <Image

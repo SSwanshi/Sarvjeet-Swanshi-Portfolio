@@ -30,39 +30,16 @@ export const ProjectsSection = ({ projects }: Props) => {
   const headingRef = useRef<HTMLDivElement>(null);
   const projectsGridRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!projectsRef.current) return;
-
-    // Simple entrance animations without ScrollTrigger
-    const tl = gsap.timeline({ delay: 0.3 });
-
-    tl.from(headingRef.current, {
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out"
-    })
-    .from(projectsGridRef.current?.children || [], {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: "power3.out"
-    }, "-=0.5");
-
-
-  }, []);
-
   return (
     <section ref={projectsRef} id="projects" className="py-20 bg-black relative overflow-hidden">
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={headingRef}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >
           <h2 className="text-5xl font-bold text-white mb-4">
