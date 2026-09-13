@@ -1,14 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { X, Mail, User, MessageSquare, Send, Loader2, CheckCircle, AlertCircle } from "lucide-react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import emailjs from '@emailjs/browser'; // Uncomment when you install EmailJS
-
-// Register GSAP plugins
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import emailjs from '@emailjs/browser';
 
 type ButtonProps = {
     label: string;

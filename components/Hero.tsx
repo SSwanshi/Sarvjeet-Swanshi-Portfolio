@@ -3,18 +3,12 @@
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Typewriter from './Typewriter';
 import AnimatedButton from './viewProject';
 import ResumeButton from './viewResume';
 import { FloatingAvatar } from './FloatingAvatar';
 import { TechLoader } from './TechLoader';
 import { FullStackCanvas } from './FullStackCanvas';
-
-// Register GSAP plugins
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 interface HeroProps {
   onLoaderComplete?: (complete: boolean) => void;

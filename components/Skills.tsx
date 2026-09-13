@@ -1,13 +1,6 @@
 import { motion } from "framer-motion";
-import { ReactNode, useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ReactNode, useRef } from "react";
 import Image from "next/image";
-
-// Register GSAP plugins
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 export type Skill = {
   name: string;
